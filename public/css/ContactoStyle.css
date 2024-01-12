@@ -1,0 +1,44 @@
+body{
+  font-family: 'Poppins', sans-serif;
+}
+.fadebg{
+    background-color: rgba(4,52,84,0.1);
+    color: #fff;
+}
+.btn .fas, .btn .fab, .btn .far {
+      margin-left: 3px;
+    }
+
+    h6 {
+      line-height: 1.7;
+    }
+
+    .map-container-section {
+      overflow:hidden;
+      /* padding-bottom:56.25%; */
+      position:relative;
+      height:0;
+    }
+  .map-container-section iframe {
+      left:0;
+      top:0;
+      height:100%;
+      width:100%;
+      position:absolute;
+    }
+  
+    /*This is modifying the btn-primary colors but you could create your own .btn-something class as well*/
+#button{
+  width: 200px;
+  height: auto;
+  align-items: center;
+  border: 2px solid rgb(4,52,84);
+  background-color: rgb(4,52,84);
+  border-radius: 20px;
+  color: #fff;
+  transition: .3s;
+}
+#button:hover{
+  box-shadow: 8px 8px #99bdff;
+  transition: .3s;
+}

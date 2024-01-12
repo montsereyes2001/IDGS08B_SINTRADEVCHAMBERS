@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+a{
+   color: white !important;
+}
+img{
+  padding: 2%;
+}
+.navbar .navbar-brand {
+  font-size: 30px;
+   color: white !important;
+   margin-bottom: 8px;
+}
+.navbar .nav-item {
+  padding: 10px 20px;
+}
+.navbar .nav-link {
+  font-size: 18px;
+  margin-left: 10px;
+}
+.navbar .nav-item:hover {
+  color: #88c2ff !important;
+}
+.navbar .nav-link:hover {
+  color: #087bf6;
+}
+.fa-bars {
+  color: #ffffff;
+  font-size: 30px;
+}
+.navbar-toggler:focus{
+  color: white;
+  border-color: white ; /* Set the color of the hamburger icon when it is clicked or hovered */
+
+}
+.navbar-toggler:focus::before {
+  color: white;
+  border-color: white ; /* Set the color of the hamburger icon when it is clicked or hovered */
+
+}
+#ic{
+    background-color: transparent
+}
+#ic:hover{
+  background-color:  #4b9df4; 
+}
+#a:not(.active) {
+  background-image: linear-gradient(
+    to right,
+    #54b3d6,
+    #54b3d6 50%,
+    rgb(255, 255, 255) 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+#a:before{
+  content: '';
+  background: #54b3d6;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+#a:hover {
+ background-position: 0;
+}
+
+#a:hover::before{
+  width: 100%;
+}
+#a {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px !important;
+}
+.fiber-bg {
+  background: linear-gradient(-60deg, rgb(4, 52, 84) 60%, rgb(54, 108, 145) 40%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  animation: fiber-optic-animation 4s ease-in-out infinite;
+}
+
+@keyframes fiber-optic-animation {
+  0% {
+    background-size: 150% 150%;
+    filter: brightness(0.6);
+  }
+  50% {
+    background-size: 180% 180%;
+    filter: brightness(1);
+  }
+  100% {
+    background-size: 150% 150%;
+    filter: brightness(0.6);
+  }
+}
