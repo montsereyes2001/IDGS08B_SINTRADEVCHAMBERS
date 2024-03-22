@@ -142,6 +142,14 @@ namespace App\Http\Controllers;
                 'contrasena.required' => 'Se necesita la contraseña.',
             ]);
 
+            if(filter_var(!$request->correo, FILTER_VALIDATE_EMAIL)){
+                return redirect()->route('inicioSesion')->with("messageL", "Por favor ingrese un correo válido");
+            }
+
+            if(strlen($request->password)<8){
+                return redirect()->route('inicioSesion')->with("messageL", "Por favor ingrese una contraseña válida");
+            }
+
             if ($validator->fails()) {
                 return redirect()->route('inicioSesion')->withErrors($validator)->withInput();
             }
