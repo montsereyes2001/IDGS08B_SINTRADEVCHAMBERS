@@ -1,21 +1,13 @@
 <?php
-  
+
 namespace App\Rules;
-  
+
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Http;
-  
+use Illuminate\Support\Facades\Log;
+
 class ReCaptcha implements Rule
 {
-    /**
-     * Create a new rule instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-          
-    }
     /**
      * Determine if the validation rule passes.
      *
@@ -23,28 +15,29 @@ class ReCaptcha implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
-    {
-          $data = array('secret' => env('GOOGLE_RECAPTCHA_SECRET'),
-            'response' => $value);
-  
-        try {
-            $verify = curl_init();
-            curl_setopt($verify, CURLOPT_URL, 
-            "https://www.google.com/recaptcha/api/siteverify");
-            curl_setopt($verify, CURLOPT_POST, true);
-            curl_setopt($verify, CURLOPT_POSTFIELDS, 
-                        http_build_query($data));
-            curl_setopt($verify, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($verify);
-  
-            return json_decode($response) -> success;
-        }
-        catch (\Exception $e) {
-            return false;
-        }
+public function passes($attribute, $value)
+{
+    $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+        'secret' => config('services.recaptcha.secret'),
+        'response' => $value,
+    ]);
+
+    $decodedResponse = json_decode($response->body());
+
+    if ($decodedResponse->success) {
+        return true;
+    } else {
+
+        //Redirigir a registro con error
+        redirect()->route('registro')->with(['mensaje' => 'El google reCAPTCHA es necesario, confirme las credenciales o inténtelo más tarde.']);
+
+        
+        Log::error('reCAPTCHA verification failed. Response: ' . $response->body());
+
+        return false;
     }
+}
+
     /**
      * Get the validation error message.
      *
@@ -52,6 +45,6 @@ class ReCaptcha implements Rule
      */
     public function message()
     {
-        return 'The google recaptcha is required.';
+        return 'El google reCAPTCHA es necesario, confirme las credenciales o inténtelo más tarde.';
     }
 }
