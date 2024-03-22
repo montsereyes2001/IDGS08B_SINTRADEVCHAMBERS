@@ -26,19 +26,19 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault();
 
             resetErrorMessages();
-            // validateFields(function (isValid) {
-            //     if (isValid) {
-            //         validateRecaptcha(recaptchaKey, function (isRecaptchaValid, errorMessage) {
-            //             if (isRecaptchaValid) {
+            validateFields(function (isValid) {
+                if (isValid) {
+                    validateRecaptcha(recaptchaKey, function (isRecaptchaValid, errorMessage) {
+                        if (isRecaptchaValid) {
                             formReg.submit();
-            //             } else {
-            //                 showAlert(errorMessage);
-            //             }
-            //         });
-            //     } else {
-            //         showAlert('Hubo un error al validar los campos.');
-            //     }
-            // });
+                        } else {
+                            showAlert(errorMessage);
+                        }
+                    });
+                } else {
+                    showAlert('Hubo un error al validar los campos.');
+                }
+            });
         });
     } else {
         showAlert('Hubo un error al encontrar el botón de envío.');

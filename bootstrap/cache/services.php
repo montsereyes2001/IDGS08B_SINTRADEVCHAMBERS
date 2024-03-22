@@ -38,6 +38,7 @@
     34 => 'App\\Providers\\EventServiceProvider',
     35 => 'App\\Providers\\RouteServiceProvider',
     36 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
+    37 => 'Biscolab\\ReCaptcha\\ReCaptchaServiceProvider',
   ),
   'eager' => 
   array (
@@ -64,6 +65,7 @@
     20 => 'App\\Providers\\EventServiceProvider',
     21 => 'App\\Providers\\RouteServiceProvider',
     22 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
+    23 => 'Biscolab\\ReCaptcha\\ReCaptchaServiceProvider',
   ),
   'deferred' => 
   array (
